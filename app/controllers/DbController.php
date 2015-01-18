@@ -11,7 +11,7 @@ class DbController extends BaseController {
 
 
     public function create(){
-        return View::make('db.create');
+        return View::make('home');
     }
 
 
