@@ -24,17 +24,17 @@ class DbController extends BaseController {
         $username    = $_ENV["dbusername"];
         $password    = $_ENV["dbpassword"];
 
-        $conn = new mysqli($servername, $username, $password);
+        $d = new mysqli($servername, $username, $password);
 
-        if ($conn->connect_error) {
+        if ($d->connect_error) {
             return "failed";
         }
-        $sql = "CREATE DATABASE {$db}";
+        $create = "CREATE DATABASE {$db}";
 
-        if (!$conn->query($sql) === TRUE) {
+        if (!$d->query($create)) {
             return "Failed";
         }
-        $conn->close();
+        $d->close();
 
         return "Your New Db Is Called : {$db}";
     }
