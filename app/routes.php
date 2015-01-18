@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/dbmake','DbController@store');
+Route::post('/dbmake',['as' => 'db.store','uses' => 'DbController@store']);
+Route::get('/dbmake',['as' => 'db.create','uses' => 'DbController@create']);

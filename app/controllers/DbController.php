@@ -10,13 +10,16 @@ use Schema;
 class DbController extends BaseController {
 
 
+    public function create(){
+        return View::make('db.create');
+    }
+
+
     public function store(){
         $randInt = mt_rand(100,999);
         $randString = Str::random(5);
         $db = "wp_{$randInt}{$randString}";
-        /*
-      return DB::connection()->statement('CREATE DATABASE :schema', ['schema' => "wp_{$randString}{$randInt}"]);
-      */
+
         $servername  = "localhost";
         $username    = $_ENV["dbusername"];
         $password    = $_ENV["dbpassword"];
@@ -24,16 +27,15 @@ class DbController extends BaseController {
         $conn = new mysqli($servername, $username, $password);
 
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            return "failed";
         }
-
         $sql = "CREATE DATABASE {$db}";
-        if ($conn->query($sql) === TRUE) {
-            echo "Database created successfully";
-        } else {
-            echo "Error creating database: " . $conn->error;
-        }
 
+        if (!$conn->query($sql) === TRUE) {
+            return "Failed";
+        }
         $conn->close();
+
+        return "Your New Db Is Called : {$db}";
     }
 } 
