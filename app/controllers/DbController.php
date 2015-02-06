@@ -5,7 +5,7 @@
  * Date: 1/17/15
  * Time: 7:07 PM
  */
-use Schema;
+
 
 class DbController extends BaseController {
 
